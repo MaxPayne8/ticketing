@@ -6,34 +6,31 @@ import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const getData = async () => {
-  const cookieStore = cookies();
-  const sessionCookie = cookieStore.get("session")?.value;
-  console.log("cokiee__", sessionCookie);
-  console.log("cokieestore__", cookieStore);
+// const getData = async () => {
+//   const cookieStore = cookies();
+//   const sessionCookie = cookieStore.get("session")?.value;
 
-  if (!sessionCookie) {
-    console.error("Session cookie is undefined");
-    return null;
-  }
+//   if (!sessionCookie) {
+//     console.error("Session cookie is undefined");
+//     return null;
+//   }
 
-  try {
-    const { data } = await axios.get(
-      "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser",
-      {
-        headers: {
-          Host: "ticketing.dev",
-          Cookie: `session=${sessionCookie}`, // Pass the session cookie in the Cookie header
-        },
-      }
-    );
-    console.log("first__", data);
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return null;
-  }
-};
+//   try {
+//     const { data } = await axios.get(
+//       "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser",
+//       {
+//         headers: {
+//           Host: "ticketing.dev",
+//           Cookie: `session=${sessionCookie}`, // Pass the session cookie in the Cookie header
+//         },
+//       }
+//     );
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return null;
+//   }
+// };
 
 export const metadata = {
   title: "Create Next App",
@@ -41,12 +38,12 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const data = await getData();
-  console.log("second__", data);
+  // const data = await getData();
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header currentUser={data?.currentUser} />
+        <Header />
         {children}
       </body>
     </html>

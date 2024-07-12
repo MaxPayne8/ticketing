@@ -1,19 +1,36 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 
-const Header = ({ currentUser }) => {
+const Header = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+
   const handleSignout = async () => {
-    await axios.post("api/users/signout");
+    await axios.post("/api/users/signout");
+    setCurrentUser(null); // Reset currentUser after signout
   };
+
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await axios.get("/api/users/currentuser");
+      setCurrentUser(response.data.currentUser);
+    } catch (error) {
+      console.error("Error fetching current user:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
+
   return (
     <div className="flex justify-between p-4">
       <div>GitTix</div>
       <div>
         {currentUser ? (
-          <h1 onClick={() => handleSignout()}>Sign out</h1>
+          <h1 onClick={handleSignout}>Sign out</h1>
         ) : (
           <div className="flex gap-4">
             <Link href="/signin">
