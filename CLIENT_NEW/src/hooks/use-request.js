@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 import { useState } from "react";
 
@@ -9,10 +8,10 @@ const useRequest = ({ url, method, body, onSuccess }) => {
     try {
       setErrors(null);
       const response = await axios[method](url, body);
-      console.log("response__", response.status);
+      console.log("response__", response);
 
       if (response.status === 201 || response.status === 200) {
-        onSuccess();
+        onSuccess(response.data);
       }
 
       return response.data;

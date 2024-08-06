@@ -10,6 +10,7 @@ import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
 import { currentUserRouter } from "./routes/current_user";
 import { errorHandler, NotFoundError } from "@zpticketing/common";
+import { getUserRouter } from "./routes/getUserEmail";
 
 const app = express();
 app.set("trust proxy", true);
@@ -25,6 +26,7 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
+app.use(getUserRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

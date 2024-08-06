@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-depl-new
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-new
+  template:
+    metadata:
+      labels:
+        app: client-new
+    spec:
+      containers:
+        - name: client-new
+          image: maxpayne8/client-new
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-srv-new
+spec:
+  selector:
+    app: client-new
+  ports:
+    - name: client-new
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

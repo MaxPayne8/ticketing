@@ -32,8 +32,8 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: maxpayne8/client
-      context: client
+    - image: maxpayne8/client-new
+      context: client_new
       docker:
         dockerfile: Dockerfile
       sync:
