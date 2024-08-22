@@ -20,6 +20,12 @@ const Header = () => {
               >
                 Tickets
               </Link>
+              <Link
+                to="/orders"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Orders
+              </Link>
               <button
                 onClick={signOut}
                 className="text-gray-300 hover:text-white transition-colors"

@@ -46,7 +46,7 @@ const TicketDetails = () => {
 
       <button
         className="text-slate-200 bg-slate-950 rounded-lg"
-        onClick={doRequest}
+        onClick={() => doRequest()}
       >
         Purchase
       </button>

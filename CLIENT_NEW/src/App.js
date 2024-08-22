@@ -9,6 +9,7 @@ import { useAuth } from "./Utils/AuthContext";
 import NewTicket from "./Pages/NewTicket";
 import TicketDetails from "./Pages/TicketDetails";
 import OrderCreated from "./Pages/OrderCreated";
+import Orders from "./Pages/Orders";
 
 function App() {
   const { currentUser } = useAuth();
@@ -25,6 +26,7 @@ function App() {
         { path: "/ticket-new", element: <NewTicket /> },
         { path: "/ticket/:id", element: <TicketDetails /> },
         { path: "/order/:ordId", element: <OrderCreated /> },
+        { path: "/orders", element: <Orders /> },
       ],
     },
   ]);

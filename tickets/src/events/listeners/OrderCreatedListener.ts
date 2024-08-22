@@ -15,6 +15,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     }
 
     ticket.set({ orderId: data.id });
+    console.log("orderIdADDED___", ticket);
 
     await ticket.save();
     await new TicketUpdatedPublisher(this.client).publish({
